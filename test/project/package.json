@@ -1,0 +1,11 @@
+{
+  "name": "mongoscope-ci-fixture-project",
+  "version": "0.0.0",
+  "dependencies": {
+    "debug": "^1.0.3"
+  },
+  "scripts": {
+    "ci": "echo hello from fixture ci",
+    "dist": "echo hello from fixture dist"
+  }
+}

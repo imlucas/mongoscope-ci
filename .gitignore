@@ -1,0 +1,6 @@
+.DS_Store
+node_modules
+.lone
+vagrant/.vagrant
+test/.mongoscope-ci
+test/project/node_modules

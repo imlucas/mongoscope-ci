@@ -192,10 +192,10 @@ function configure(opts, fn){
 function options(opts){
   opts = opts || {};
 
-  opts.nodejs = opts.nodejs || '0.10.29';
-  opts.mongodb = opts.mongodb || '2.6.3';
-  opts.cache = path.resolve(untildify((opts.cache || '~/.mongoscope-ci')));
-  opts.cwd = path.resolve(untildify((opts.cwd || process.cwd())));
+  opts.nodejs = opts.nodejs || process.env.CI_NODEJS || '0.10.29';
+  opts.mongodb = opts.mongodb || process.env.CI_MONGODB || '2.6.3';
+  opts.cache = path.resolve(untildify((opts.cache || process.env.CI_CACHE || '~/.mongoscope-ci')));
+  opts.cwd = path.resolve(untildify((opts.cwd || process.env.CI_CWD || process.cwd())));
   return opts;
 }
 

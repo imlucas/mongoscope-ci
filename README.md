@@ -29,7 +29,7 @@ because this is really hard:
 > WIP
 
 ```
-curl -fsSL http://mongodb.land/mongoscope-ci/install | bash
+curl -fsSL http://squirrel.mongodb.land/mongoscope-ci/install | bash
 ```
 
 ## Tests

@@ -7,7 +7,6 @@ var async = require('async'),
   fs = require('fs-extra'),
   zlib = require('zlib'),
   tar = require('tar'),
-  es = require('event-stream'),
   spawn = require('child_process').spawn;
 
 function platform(mongodb){

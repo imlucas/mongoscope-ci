@@ -4,10 +4,10 @@
   "description": "Run mongoscope's CI or test against it with your own CI",
   "author": "Lucas Hrabovsky <hrabovsky.lucas@gmail.com> (http://imlucas.com)",
   "license": "MIT",
-  "homepage": "http://github.com/imlucas/mongoscope-client",
+  "homepage": "http://github.com/imlucas/mongoscope-ci",
   "repository": {
     "type": "git",
-    "url": "git://github.com/imlucas/mongoscope-client.git"
+    "url": "git://github.com/imlucas/mongoscope-ci.git"
   },
   "scripts": {
     "test": "mocha",
@@ -24,7 +24,7 @@
     "yargs": "^1.2.6"
   },
   "devDependencies": {
-    "github-release": "0.0.2",
+    "github-release": "^0.1.0",
     "gulp": "^3.8.6",
     "lone": "^0.3.2"
   },

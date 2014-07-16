@@ -3,7 +3,7 @@ var gulp = require('gulp'),
   pkg = require('./package.json'),
   exec = require('child_process').exec;
 
-gulp.task('dist', ['build', 'upload']);
+gulp.task('dist', ['upload']);
 
 gulp.task('build', function(cb){
   exec('./node_modules/.bin/lone', function(err){
@@ -12,6 +12,6 @@ gulp.task('build', function(cb){
   });
 });
 
-gulp.task('upload', function(){
-  gulp.src('./.lone/dist/*').pipe(release(pkg));
+gulp.task('upload', ['build'], function(){
+  return gulp.src('./.lone/dist/*').pipe(release(pkg));
 });

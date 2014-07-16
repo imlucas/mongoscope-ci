@@ -82,7 +82,7 @@ function extract(pkg){
       if(exists){
         debug('already extracted', dest);
         cleanup.clear();
-        fn(null, dest);
+        return fn(null, dest);
       }
       debug('reading ' + tarball);
 
@@ -91,17 +91,14 @@ function extract(pkg){
         extractor = tar.Extract({path: dest, strip: 1});
 
       extractor.on('end', function(){
-        debug('created', dest);
+        ended = true;
+        debug('created', dest, arguments);
         cleanup.clear();
         fn(null, dest);
       });
 
       input.pipe(ungzip);
-      ungzip.on('error', function(err){
-        debug('error ungziping', err);
-        cleanup.clear();
-        fn(err, dest);
-      }).on('finished', function(){
+      ungzip.on('finished', function(){
         debug('ungzipped');
       });
 

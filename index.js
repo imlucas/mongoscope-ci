@@ -170,6 +170,16 @@ function configure(opts, fn){
     }
   });
   config = options(opts);
+
+  var pkg;
+  try{
+    config.pkg = require(path.resolve(config.cwd + '/package.json'));
+  }
+  catch(err){
+    return fn(new Error('Missing package.json file.  Expected to to parse\n ' +
+      path.resolve(config.cwd + '/package.json')));
+  }
+
   debug('configured: \n' + Object.keys(config).map(function(k){
     return '- '+k+': '+config[k];
   }).join('\n'));
@@ -192,7 +202,7 @@ function options(opts){
 function run(bin, args, fn){
   if(os.platform() === 'win32') bin += '.exe';
 
-  var debug = require('debug')('mongoscope-ci:run:' + args[1]),
+  var debug = require('debug')('mongoscope-ci:run:' + (args[1] || args[0])),
     cmd = bin + ' ' + args.join(' '),
     opts = {cwd: config.cwd, stdio: ['ignore', process.stdout, process.stderr]},
     child, cleanup,
@@ -212,7 +222,12 @@ function run(bin, args, fn){
 var tasks = {
   setup: function(){
     return function(fn){
-      async.parallel([mongodb(), nodejs()], fn);
+      async.parallel([mongodb(), nodejs()], function(err){
+        if(err) return fn(err);
+
+        debug('Installing ');
+        run('npm', ['install'], fn);
+      });
     };
   },
   ci: function(){
